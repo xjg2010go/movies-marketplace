@@ -6,22 +6,20 @@ node('workers'){
     }
     def imageTest = docker.build("${imageName}-test","-f Dockerfile.test .")
 
-    stage('Pre-integration Test') {
-        parallel (
-            'Quality Tests': {
-                sh "docker run --rm ${imageName}-test npm run lint"
-            },
-            'Unit Test': {
-                sh "docker run --rm -v $PWD/converage:/app/coverage ${imageName}-test npm run test"
-                publishHTML (target:[
-                    allowMissing: false,
-                    alwaysLinkToLastBuild: false,
-                    keepAll: true,
-                    reportDir: "$PWD/coverage",
-                    reportFiles: "index.html",
-                    reportName: "Coverage Report"
-                ])
-            }
-        )
+    stage('Quality Tests'){
+        sh "docker run --rm ${imageName}-test npm run lint"
     }
+
+    stage('Unit Tests'){
+        sh "docker run --rm -v $PWD/coverage:/app/coverage ${imageName}-test npm run test"
+        publishHTML (target: [
+            allowMissing: false,
+            alwaysLinkToLastBuild: false,
+            keepAll: true,
+            reportDir: "$PWD/coverage/marketplace",
+            reportFiles: "index.html",
+            reportName: "Coverage Report"
+        ])
+    }
+
 }
