@@ -5,5 +5,5 @@ COPY package-lock.json .
 COPY package.json .
 
 RUN apt-get update && apt-get install -y chromium
-RUN npm i && npm i -g @augular/cli
+RUN npm i && npm i -g @angular/cli
 COPY . .
