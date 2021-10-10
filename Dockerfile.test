@@ -1,14 +1,9 @@
 FROM node:14.0.0
-
 ENV CHROME_BIN=chromium
-
 WORKDIR /app
+COPY package-lock.json .
+COPY package-json .
 
 RUN apt-get update && apt-get install -y chromium
-
-COPY package-lock.json .
-COPY package.json .
-
-RUN npm i && npm i -g @angular/cli
-
+RUN npm i && npm i -g @augular/cli
 COPY . .
