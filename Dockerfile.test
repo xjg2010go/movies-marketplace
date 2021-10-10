@@ -2,7 +2,7 @@ FROM node:14.0.0
 ENV CHROME_BIN=chromium
 WORKDIR /app
 COPY package-lock.json .
-COPY package-json .
+COPY package.json .
 
 RUN apt-get update && apt-get install -y chromium
 RUN npm i && npm i -g @augular/cli
