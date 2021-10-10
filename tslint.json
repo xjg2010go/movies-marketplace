@@ -1,5 +1,5 @@
 {
-  "extends": "tslint:disable *",
+  "extends": "tslint:recommended",
   "rules": {
     "no-trailing-whitespace": false,
     "semicolon": false,
