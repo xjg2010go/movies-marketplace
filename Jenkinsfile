@@ -5,10 +5,11 @@ node('workers'){
         checkout scm
     }
     def imageTest = docker.build("${imageName}-test","-f Dockerfile.test .")
+
     stage('Pre-integration Test') {
         parallel (
             'Quality Tests': {
-                sh 'docker run --rm ${imageName}-test npm run lint'
+                sh "docker run --rm ${imageName}-test npm run lint"
             },
             'Unit Test': {
                 sh "docker run --rm -v $PWD/converage:/app/coverage ${imageName}-test npm run test"

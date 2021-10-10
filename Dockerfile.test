@@ -1,4 +1,5 @@
 FROM node:14.0.0
+
 ENV CHROME_BIN=chromium
 WORKDIR /app
 COPY package-lock.json .
