@@ -1,34 +1,30 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { FavoritesComponent } from './favorites/favorites.component';
-import { MovieComponent } from './movie/movie.component';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+import { DashboardComponent } from "./dashboard/dashboard.component";
+import { FavoritesComponent } from "./favorites/favorites.component";
+import { MovieComponent } from "./movie/movie.component";
 
 const routes: Routes = [
-  { 
-    path: 'dashboard',
+  {
+    path: "dashboard",
     component: DashboardComponent,
-    data: { title: 'Sign In - Komiser' }
+    data: { title: "Sign In - Komiser" },
   },
-  { 
-    path: 'favorites',
+  {
+    path: "favorites",
     component: FavoritesComponent,
-    data: { title: 'Join - Komiser' }
+    data: { title: "Join - Komiser" },
   },
-  { 
-    path: 'movies/:id',
+  {
+    path: "movies/:id",
     component: MovieComponent,
-    data: { title: 'Expired token - Komiser' }
+    data: { title: "Expired token - Komiser" },
   },
-  { path: '**',
-    redirectTo: 'dashboard'
-  }
+  { path: "**", redirectTo: "dashboard" },
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes)
-  ],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
