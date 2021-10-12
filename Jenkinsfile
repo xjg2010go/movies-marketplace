@@ -29,6 +29,7 @@ node('workers'){
         }
     }
 
+
     stage("Quality Gate"){
         timeout(time:5, unit: 'MINUTES') {
             def qg = waitForQualityGate()
