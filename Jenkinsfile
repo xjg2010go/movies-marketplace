@@ -21,9 +21,19 @@ node('workers'){
     //         reportName: "Coverage Report"
     //     ])
     // }
+
     stage("Static Code Analysis"){
         withSonarQubeEnv('sonarqube') {
             sh 'sonar-scanner'
+        }
+    }
+
+    stage("Quality Gate"){
+        timeout(time:5, unit: 'MINUTES') {
+            def qg = waitForQualityGate()
+            if (qg.status  != ok ) {
+                error "Pipeline aborted failure: ${qg.status}"
+            }
         }
     }
 }
